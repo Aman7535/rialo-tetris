@@ -14,6 +14,8 @@ Play it live here 👉 https://rialo-tetris.vercel.app/
 🖼️ Demo Screenshot
 
 <!-- replace with actual screenshot path -->
+![Game Screenshot](./public/screenshot.png)
+
 
 ⚡ Tech Stack
 
@@ -28,7 +30,7 @@ Vercel (Deployment)
 Clone the repo and install dependencies:
 
 # Clone repo
-git clone https://github.com/your-username/rialo-tetris.git
+git clone https://github.com/Aman7535/rialo-tetris.git
 
 # Go inside folder
 cd rialo-tetris
