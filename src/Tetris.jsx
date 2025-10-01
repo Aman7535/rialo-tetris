@@ -145,7 +145,7 @@ const Tetris = () => {
     return () => clearInterval(interval);
   }, [piece, pos, gameOver, isValidMove, placePiece]);
 
-  // controls
+  // controls (keyboard)
   useEffect(() => {
     const handleKey = (e) => {
       if (gameOver) return;
@@ -159,18 +159,41 @@ const Tetris = () => {
         setPos((p) => ({ ...p, row: p.row + 1 }));
       }
       if (e.key === "ArrowUp") {
-        // rotate
-        const rotated = piece.shape[0].map((_, i) =>
-          piece.shape.map((row) => row[i]).reverse()
-        );
-        if (isValidMove({ ...piece, shape: rotated }, pos.row, pos.col)) {
-          setPiece((p) => ({ ...p, shape: rotated }));
-        }
+        rotatePiece();
       }
     };
     window.addEventListener("keydown", handleKey);
     return () => window.removeEventListener("keydown", handleKey);
   }, [piece, pos, gameOver, isValidMove]);
+
+  // move functions for mobile buttons
+  const moveLeft = () => {
+    if (!gameOver && isValidMove(piece, pos.row, pos.col - 1)) {
+      setPos((p) => ({ ...p, col: p.col - 1 }));
+    }
+  };
+
+  const moveRight = () => {
+    if (!gameOver && isValidMove(piece, pos.row, pos.col + 1)) {
+      setPos((p) => ({ ...p, col: p.col + 1 }));
+    }
+  };
+
+  const moveDown = () => {
+    if (!gameOver && isValidMove(piece, pos.row + 1, pos.col)) {
+      setPos((p) => ({ ...p, row: p.row + 1 }));
+    }
+  };
+
+  const rotatePiece = () => {
+    if (gameOver) return;
+    const rotated = piece.shape[0].map((_, i) =>
+      piece.shape.map((row) => row[i]).reverse()
+    );
+    if (isValidMove({ ...piece, shape: rotated }, pos.row, pos.col)) {
+      setPiece((p) => ({ ...p, shape: rotated }));
+    }
+  };
 
   // Restart Game
   const restartGame = () => {
@@ -218,8 +241,8 @@ const Tetris = () => {
           backgroundColor: "#111",
           backgroundImage: "url('/mylogo.png')",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center 30%", // shifted upwards
-          backgroundSize: "190px", // scales with screen
+          backgroundPosition: "center 30%",
+          backgroundSize: "190px",
         }}
       >
         {displayGrid.map((row, i) =>
@@ -230,16 +253,50 @@ const Tetris = () => {
                 width: blockSize,
                 height: blockSize,
                 border: "1px solid #333",
-                background: cell || "transparent", // transparent to see logo
+                background: cell || "transparent",
               }}
             />
           ))
         )}
       </div>
+
+      {/* ✅ Mobile Controls */}
+      <div
+        style={{
+          display: "none",
+          marginTop: "15px",
+        }}
+        className="mobile-controls"
+      >
+        <button onClick={moveLeft}>⬅️</button>
+        <button onClick={rotatePiece}>🔄</button>
+        <button onClick={moveRight}>➡️</button>
+        <button onClick={moveDown}>⬇️</button>
+      </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .mobile-controls {
+            display: flex !important;
+            justify-content: center;
+            gap: 10px;
+          }
+          .mobile-controls button {
+            font-size: 24px;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 8px;
+            background-color: #333;
+            color: white;
+            cursor: pointer;
+          }
+          .mobile-controls button:active {
+            background-color: #555;
+          }
+        }
+      `}</style>
     </div>
   );
 };
 
 export default Tetris;
-
-
