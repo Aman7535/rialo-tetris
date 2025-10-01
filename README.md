@@ -1,7 +1,7 @@
 🎮 RIALO TETRIS
 
 A modern Tetris game built with React + Vite, deployed on Vercel.
-Play it live here 👉 https://rialo-tetris.vercel.app/
+[rialo-tetris.vercel.app](https://rialo-tetris.vercel.app/)
 
 🚀 Features
 
@@ -14,7 +14,7 @@ Play it live here 👉 https://rialo-tetris.vercel.app/
 🖼️ Demo Screenshot
 
 <!-- replace with actual screenshot path -->
-![Game Screenshot](public/screenshot.png)
+![Game Screenshot](public/screenshot.jpg)
 
 
 ⚡ Tech Stack
