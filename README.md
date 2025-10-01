@@ -14,7 +14,7 @@ Play it live here 👉 https://rialo-tetris.vercel.app/
 🖼️ Demo Screenshot
 
 <!-- replace with actual screenshot path -->
-![Game Screenshot](./public/screenshot.png)
+![Game Screenshot](public/screenshot.png)
 
 
 ⚡ Tech Stack
